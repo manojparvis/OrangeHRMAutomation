@@ -5,18 +5,19 @@ Resource    ../Resource/CommonFunctionality.resource
 
 Test Setup   Launch Browser
 Test Teardown    Close Browser
-
 Test Template       valid Credential Template
 
+Library   DataDriver   file=../Test_data/orange_data.xlsx        sheet_name=Valid Credential
+
 *** Test Cases ***
-TC1    Admin   admin123  My Info
-TC2    Admin   admin123  Welcome
+TC1
+
 *** Keywords ***
 valid Credential Template
-      [Arguments]     ${username}   ${password}   ${login}
+      [Arguments]     ${username}   ${password}   ${expected_value}
       Input Text    id=txtUsername    ${username}
       Input Password    id=txtPassword    ${password}
       Click Element    id=btnLogin
-      Page Should Contain    ${login}
+      Page Should Contain    ${expected_value}
 
 
